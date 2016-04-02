@@ -1,0 +1,45 @@
+body{
+  margin: 0px;
+}
+$bo_color:rgb(192, 182, 182);
+$height:50px;
+@mixin inter{
+  .inter{
+  height: $height;
+  background-color: #eee;
+  border: 1px solid black;
+}}
+@mixin position{
+  float: left;
+  -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+      box-sizing: border-box;
+
+  padding:10px;
+}
+@mixin Style{
+  border: 2px solid $bo-color;
+  width:100%;
+  overflow: hidden;
+}
+@mixin contain{
+  .container{
+    @include Style;
+  }
+}
+@mixin returns($size) {
+  @include contain;
+    @for $i from 1 to 13{
+      .col-#{$size}-#{$i}{
+        width:100%/12*($i);
+        @include position;
+        @include inter;
+      }
+  }
+}
+@media  (min-width: 769px) {
+  @include returns(md);
+}
+@media  (max-width: 768px) {
+   @include returns(sm);
+}
